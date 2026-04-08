@@ -1,7 +1,7 @@
 import random
-from models import Observation, Action
-from tasks import get_tasks
-from grader import grade_task
+from env.models import Observation, Action
+from env.tasks import get_tasks
+from env.grader import grade_task
 
 class OpenEnv:
     def __init__(self):
