@@ -1,7 +1,7 @@
 import os
 from openai import OpenAI
 from env.environment import OpenEnv
-from models import Action
+from env.models import Action
 
 client = OpenAI(api_key=os.getenv("HF_TOKEN"))
 
