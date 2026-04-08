@@ -1,0 +1,3 @@
+name: openenv-pro
+description: Real-world AI task environment
+entrypoint: env/environment.py
