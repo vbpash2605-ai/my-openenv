@@ -1,5 +1,5 @@
 import random
-from models import Observation, Action
+from env.models import Observation, Action
 from tasks import get_tasks
 from grader import grade_task
 
