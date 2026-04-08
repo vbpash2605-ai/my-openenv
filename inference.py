@@ -1,30 +1,30 @@
-import os
-from openai import OpenAI
 from env.environment import OpenEnv
 from env.models import Action
+import time
 
-client = OpenAI(api_key=os.getenv("HF_TOKEN"))
+def run():
+    env = OpenEnv()
+    obs = env.reset()
 
-env = OpenEnv()
-obs = env.reset()
+    total_score = 0
+    steps = 0
 
-total_score = 0
-steps = 0
+    while True:
+        action = Action(response="important bug remove")
 
-while True:
-    response = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[{"role": "user", "content": obs.content}]
-    )
+        obs, reward, done, _ = env.step(action)
 
-    action = Action(response=response.choices[0].message.content)
+        total_score += reward
+        steps += 1
 
-    obs, reward, done, _ = env.step(action)
+        if done:
+            break
 
-    total_score += reward
-    steps += 1
+    print("Final Score:", total_score / steps)
 
-    if done:
-        break
-
-print("Final Score:", total_score / steps)
+if __name__ == "__main__":
+    run()
+    
+    # Keep app alive (VERY IMPORTANT)
+    while True:
+        time.sleep(60)
